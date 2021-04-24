@@ -1,0 +1,34 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+        
+        
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        sum_ = 0
+
+        curr1 = l1
+        i1 = 0
+        while curr1 is not None:
+            sum_ += (10 ** i1) * curr1.val
+            i1 += 1
+            curr1 = curr1.next
+
+        curr2 = l2
+        i2 = 0
+        while curr2 is not None:
+            sum_ += (10 ** i2) * curr2.val
+            i2 += 1
+            curr2 = curr2.next
+
+        rev_sum = str(sum_)[::-1]
+
+        l3 = []
+        for e in rev_sum:
+            l3.append(ListNode(int(e)))
+
+        for i3 in range(len(l3) - 1):
+            l3[i3].next = l3[i3 + 1]
+
+        return l3[0]
